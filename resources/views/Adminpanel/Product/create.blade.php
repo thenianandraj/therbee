@@ -34,44 +34,73 @@
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label required">Product Name</label>
                     <div class="col-sm-9">
-                      <input type="name" name="name" required class="form-control" />
+                      <input type="name" name="product_name" required class="form-control" />
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label required">Product Code</label>
+                    <label for="select_category" class="col-sm-3 col-form-label required">Select Category</label>
                     <div class="col-sm-9">
-                      <input type="text" name="code" required class="form-control" />
+                      <select class="form-control form-control-sm" name="category" id="select_category">
+                        <option value="">1</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label required">Original Rate</label>
+                    <div class="col-sm-9">
+                      <input type="number" name="OriginalRate" required class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label required">Discount Rate</label>
+                    <div class="col-sm-9">
+                      <input type="number" name="DiscountRate" required class="form-control" />
                     </div>
                   </div>
                 </div>
               </div>
-              {{-- <div class="row">
+              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label required">HSN Code</label>
+                    <label class="col-sm-3 col-form-label required">Keywords</label>
                     <div class="col-sm-9">
-                      <input type="number" name="hsn" required class="form-control" />
+                      <input type="text" name="keywords" required class="form-control" />
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label required">CGST</label>
+                    <label class="col-sm-3 col-form-label required">Discription</label>
                     <div class="col-sm-9">
-                      <input type="number" name="cgst" required class="form-control" />
+                      <textarea type="text" name="discription" required class="form-control form-control-sm"></textarea>
                     </div>
                   </div>
-
                 </div>
-              </div> --}}
+              </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
                     <label class="col-sm-3 col-form-label required">Product Image</label>
                     <div class="col-sm-9">
                       <input type="file" name="image" required class="form-control" accept=".png" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <div class="form-check">
+                      <label class="form-check-label ">
+                        <input type="checkbox" class="form-check-input" value="1" name="is_default" checked>Is Available For Home Page</label>
                     </div>
                   </div>
                 </div>
