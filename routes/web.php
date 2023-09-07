@@ -34,6 +34,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/category_list',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
 Route::get('/category_create',[App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+Route::post('/category_store',[App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+
 
 
 //-----------------------------------------Product------------------------------------------//

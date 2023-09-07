@@ -57,25 +57,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {{-- @foreach ($products as $product) --}}
+                      @foreach ($categories as $i=>$category)
                       <tr>
-                        <td></td>
-                        {{-- <td>{{ ++$i }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->code }}</td>
-                        <td>{{ $product->hsn }}</td>
-                        <td>{{ $product->cgst }}</td>
-                        <td>{{ $product->sgst }}</td> --}}
-                        {{-- <td>
-                          <a href="/products_edit{{$product->id}}" class="mdi mdi-lead-pencil"></a>
-                          <a href="/products_delete{{$product->id}}" class="mdi mdi-delete"></a> --}}
+                        <td>{{ ++$i }}</td>
+                        <td>{{ $category->name }}</td>
+                        <td><img src="{{$category->image}}" width="100%" height="100%"></td>
+                        <td>{{ $category->description }}</td>
+                        
+                        <td>
+                          <a href="/products_edit{{$category->id}}" class="mdi mdi-lead-pencil"></a>
+                          <a href="/products_delete{{$category->id}}" class="mdi mdi-delete"></a>
                         </td>
                       </tr>
-                      {{-- @endforeach --}}
+                      @endforeach
                     </tbody>
                     <tr>
-                      {{-- <td class="table-paginate" colspan="4">Showing{{$products->firstItem() }} {{ $products->lastItem() }} of {{ $products->total() }}</td>
-                        <td class="table-paginate" colspan="3">{{ $products->links() }}</td> --}}
+                        <td class="table-paginate" colspan="3">{{ $categories->links() }}</td>
                     </tr>
                   </table>
                 </div>

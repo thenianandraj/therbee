@@ -78,9 +78,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label required">Discription</label>
+                    <label class="col-sm-3 col-form-label required">Description</label>
                     <div class="col-sm-9">
-                      <textarea type="text" name="discription" required class="form-control form-control-sm"></textarea>
+                      <textarea type="text" name="description" required class="form-control form-control-sm"></textarea>
                     </div>
                   </div>
                 </div>
