@@ -28,13 +28,12 @@
               {{ session('success') }}
             </div>
             @endif
-            <form class="form-sample" action="/products_store" method="POST">
-
+            <form class="form-sample" action="/category_store" method="POST" enctype="multipart/form-data">
+              @csrf
               <div class="row">
                 <div class="col-md-6">
-                  @csrf
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Catgory Name*</label>
+                    <label class="col-sm-3 col-form-label required">Catgory Name</label>
                     <div class="col-sm-9">
                       <input type="text" name="name" required class="form-control" placeholder="Enter Category Name" />
                     </div>
@@ -44,7 +43,7 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label required">Category Image</label>
                         <div class="col-sm-9">
-                          <input type="file" name="image" required class="form-control" accept=".png" />
+                          <input type="file" name="image" required class="form-control" accept=".png, .jpg, .jpeg" />
                         </div>
                       </div>
                 </div>
@@ -52,9 +51,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Address</label>
+                    <label class="col-sm-3 col-form-label">Description</label>
                     <div class="col-sm-9">
-                      <textarea class="form-control" name="address" aria-placeholder="Theni"></textarea>
+                      <textarea class="form-control" name="description"></textarea>
                     </div>
                   </div>
                 </div>
@@ -68,8 +67,18 @@
       </div>
     </div>
   </div>
-
-
   <!-- content-wrapper ends -->
   <!-- partial:../../partials/_footer.html -->
  @include('Adminpanel.layouts.footer')
+
+ <style>
+  .required:after {
+  content: " *";
+  color: red;
+}
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+</style>
