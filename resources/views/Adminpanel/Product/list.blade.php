@@ -61,48 +61,47 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Products</h4>
-                            </p>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>S No</th>
-                                        <th>Product Name</th>
-                                        <th>Image</th>
-                                        <th>Original Rate</th>
-                                        <th>Discount Rate</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($products as $i=>$product)
+                            <!-- Add table-responsive class -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>{{ $product->product_name }}</td>
-                                            <td>
-                                                <img src="{{ asset($product->image) }}" width="100%" height="100%">
-                                            </td>
-                                            <td>{{ $product->original_rate }}</td>
-                                            <td>{{ $product->discount_rate }}</td>
-                                            <td>
-                                                <a href="/product_edit{{ $product->id }}"
-                                                    class="mdi mdi-lead-pencil"></a>
-                                                <a href="/product_delete{{ $product->id }}"
-                                                    class="mdi mdi-delete"></a>
-                                            </td>
+                                            <th>S No</th>
+                                            <th>Product Name</th>
+                                            <th>Image</th>
+                                            <th>Original Rate</th>
+                                            <th>Discount Rate</th>
+                                            <th>Actions</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                                <tr>
-                                    {{-- <td class="table-paginate" colspan="4">Showing{{$products->firstItem() }}
-                                    {{ $products->lastItem() }} of {{ $products->total() }}</td> --}}
-                                    <td class="table-paginate" colspan="3">{{ $products->links() }}</td>
-                                </tr>
-                            </table>
-
+                                    </thead>
+                                    <tbody>
+                                        @foreach($products as $i=>$product)
+                                            <tr>
+                                                <td>{{ ++$i }}</td>
+                                                <td>{{ $product->product_name }}</td>
+                                                <td>
+                                                    <img src="{{ asset($product->image) }}" width="100%" height="100%">
+                                                </td>
+                                                <td>{{ $product->original_rate }}</td>
+                                                <td>{{ $product->discount_rate }}</td>
+                                                <td>
+                                                    <a href="/product_edit{{ $product->id }}" class="mdi mdi-lead-pencil"></a>
+                                                    <a href="/product_delete{{ $product->id }}" class="mdi mdi-delete"></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tr>
+                                        <td class="table-paginate" colspan="3">{{ $products->links() }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <!-- End table-responsive -->
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
     <!-- main-panel ends -->

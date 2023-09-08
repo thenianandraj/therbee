@@ -26,6 +26,7 @@ class ProductController extends Controller
 
         $destinationPath = 'uploads/products/';
         $name = $file->move($destinationPath, $file->getClientOriginalName());
+        
 
         Product::create([
             'product_name' => ucwords($request->input('product_name')),

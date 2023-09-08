@@ -46,40 +46,43 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Category</h4>
-                        </p>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>S No</th>
-                                    <th>Category Name</th>
-                                    <th>Category Image</th>
-                                    <th>Description</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($categories as $i=>$category)
+                        <!-- Add table-responsive class -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
                                     <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td><img src="{{ $category->image }}" width="100%" height="100%"></td>
-                                        <td>{{ $category->description }}</td>
-                                        <td>
-                                            <a href="/category_edit{{ $category->id }}"
-                                                class="mdi mdi-lead-pencil"></a>
-                                            <a href="/category_delete{{ $category->id }}" class="mdi mdi-delete"></a>
-                                        </td>
+                                        <th>S No</th>
+                                        <th>Category Name</th>
+                                        <th>Category Image</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                            <tr>
-                                <td class="table-paginate" colspan="3">{{ $categories->links() }}</td>
-                            </tr>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach($categories as $i=>$category)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td><img src="{{ $category->image }}" width="100%" height="100%"></td>
+                                            <td>{{ $category->description }}</td>
+                                            <td>
+                                                <a href="/category_edit{{ $category->id }}" class="mdi mdi-lead-pencil"></a>
+                                                <a href="/category_delete{{ $category->id }}" class="mdi mdi-delete"></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tr>
+                                    <td class="table-paginate" colspan="3">{{ $categories->links() }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- End table-responsive -->
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 <!-- main-panel ends -->

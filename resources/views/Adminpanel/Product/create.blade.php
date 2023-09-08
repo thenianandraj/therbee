@@ -43,13 +43,13 @@
                                         <label for="select_category" class="col-sm-3 col-form-label required">Select
                                             Category</label>
                                         <div class="col-sm-9">
-                                          @foreach ($category as $item)
                                             <select class="form-control form-control-sm" name="category"
                                                 id="select_category">
                                                 <option>Select</option>
+                                                @foreach ($category as $item)
                                                 <option value="{{$item->name}}">{{$item->name}}</option>
+                                                @endforeach
                                             </select>
-                                          @endforeach
                                         </div>
                                     </div>
                                 </div>
