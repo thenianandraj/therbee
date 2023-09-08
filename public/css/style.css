@@ -8486,7 +8486,9 @@ h1, h2, h3, h4, h5,
 
 .bg-primary {
   background: #82ae46; }
-
+.bg-pink {
+  background-color: 	#ffb6c1;
+}
 .bg-secondary {
   background: #ffe6eb !important; }
 
@@ -9172,6 +9174,9 @@ textarea.form-control {
 
 .bg-primary {
   background: #82ae46 !important; }
+.bg-pink {
+  background: 	#ffb6c1 !important;
+}
 
 .bg-black {
   background: #000000 !important; }

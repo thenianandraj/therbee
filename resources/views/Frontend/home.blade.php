@@ -3,30 +3,9 @@
 <!----------------------------------------------Main-content---------------------------------------------->
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                    <div class="col-md-12 ftco-animate text-center">
-                        <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-                        <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                        <p><a href="#" class="btn btn-primary">View Details</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-                    <div class="col-sm-12 ftco-animate text-center">
-                        <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-                        <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-                        <p><a href="#" class="btn btn-primary">View Details</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{-- <div class="slider-item" style="images/Beautypost.jpg max-width=100%; height=400px;">
+        </div> --}}
+        <img class="slider-item" src="images/Beautypost.jpg" style="max-width=100%; height=520px;">
     </div>
 </section>
 <section class="ftco-section">
@@ -142,8 +121,8 @@
     </div>
     <div class="container">
         <div class="row">
-          @foreach ($products as $product)
-          @if($product->add_product == '1')
+            @foreach ($products as $product)
+            @if($product->add_product == '1')
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
                     <a href="#" class="img-prod"><img class="img-fluid" src="{{asset($product->image)}}"
@@ -161,27 +140,25 @@
                         </div>
                         <div class="bottom-area d-flex px-3">
                             <div class="m-auto d-flex">
-                                <a href="#"
-                                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                    <span><i class="ion-ios-menu"></i></span>
-                                </a>
-                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-                                    <span><i class="ion-ios-cart"></i></span>
-                                </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                <a href="#" class="heart d-flex justify-content-center align-items-center">
                                     <span><i class="ion-ios-heart"></i></span>
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div class="add-to-cart-button text-center mt-2">
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                    <br>
                 </div>
             </div>
-          @endif
-          @endforeach
-           
-           
+            @endif
+            @endforeach
         </div>
     </div>
+    
+    
+    
 </section>
 
 <section class="ftco-section img" style="background-image: url(images/bg_3.jpg);">
