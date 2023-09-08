@@ -10,8 +10,9 @@ use App\Models\Product;
 class HomeController extends Controller
 {
     public function index(){
-        $category = Category::all();
-        $product = Product::all();
-        return view('Frontend.home');
+        $categories = Category::all();
+        $products = Product::where('add_product', 1)->get();
+
+        return view('Frontend.home', compact('categories','products'));
     }
 }
