@@ -1,4 +1,4 @@
-@include('partials.app')
+@include('Frontend.partials.app')
 
 <!----------------------------------------------Main-content---------------------------------------------->
 <section id="home-section" class="hero">
@@ -526,4 +526,4 @@
 </div>
 </section>
 <!----------------------------------------------Main-content---------------------------------------------->
-@include('partials.footer')
+@include('Frontend.partials.footer')

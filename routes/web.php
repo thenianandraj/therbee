@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\{
     ProductController,
 };
 
+use App\Http\Controllers\Frontend\{
+    HomeController,
+};
 
 
 
@@ -20,14 +23,16 @@ use App\Http\Controllers\Admin\{
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
+//------------------------------------Auth------------------------------------------//
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//------------------------------------FrontEnd--------------------------------------------//
+Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
 
 
 //----------------------------------------Category-----------------------------------------//
