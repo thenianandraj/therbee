@@ -1,5 +1,4 @@
 @include('Frontend.partials.app')
-
 <!----------------------------------------------Main-content---------------------------------------------->
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">

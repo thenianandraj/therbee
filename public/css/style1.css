@@ -1,0 +1,21 @@
+  .custom-pink-bg {
+    background-color: pink;
+}
+.required:after {
+    content: " *";
+    color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.btn.btn-prink {
+    background-color: pink;
+    /* You can customize other styles as needed */
+    color: white; /* White text on a pink background, for example */
+    border: 1px solid #ff1493; /* Pink border */
+    /* Add more CSS properties as needed */
+  }

@@ -74,15 +74,4 @@
     <!-- partial:../../partials/_footer.html -->
     @include('Adminpanel.layouts.footer')
 
-    <style>
-        .required:after {
-            content: " *";
-            color: red;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-    </style>
+    
