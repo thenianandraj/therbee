@@ -33,8 +33,3 @@
       </div>
   </div>
 </nav>
-<style>
-  .custom-pink-bg {
-    background-color: pink;
-}
-</style>
