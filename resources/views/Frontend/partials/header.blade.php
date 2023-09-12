@@ -13,8 +13,8 @@
     </div>
       <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="index.html" class="nav-link">HOME</a></li>
-              <li class="nav-item"><a href="about.html" class="nav-link">ABOUT</a></li>
+              <li class="nav-item active"><a href="/" class="nav-link">HOME</a></li>
+              <li class="nav-item"><a href="/about" class="nav-link">ABOUT</a></li>
               <li class="nav-item"><a href="blog.html" class="nav-link">MYORDERS</a></li>
               <li class="nav-item"><a href="blog.html" class="nav-link">wISHLIST</a></li>
               <li class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></li>

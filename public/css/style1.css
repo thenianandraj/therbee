@@ -19,9 +19,14 @@
   }
 .btn.btn-hotpink{
 	color: white; 
-	background-color: #FF91AA;
+	background-color: #ed3b91;
 }
-  
+.text-h3{
+	line-height: 1.5;
+    font-weight: bold;
+  color: #690243;
+  font-family: "Poppins", Arial, sans-serif; 
+}
 .img-no-border {
   border: none;
 }
@@ -41,6 +46,7 @@
 	margin-right: 25px;
 	position: relative;
 	cursor: pointer;
+	font-family: "Poppins", Arial, sans-serif;
 }
 
 .featured__controls ul li.active:after {
@@ -53,7 +59,7 @@
 	bottom: -2px;
 	width: 100%;
 	height: 2px;
-	background: #7fad39;
+	background: #ed3b91;
 	content: "";
 	opacity: 0;
 }

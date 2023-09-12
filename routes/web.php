@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\{
 
 use App\Http\Controllers\Frontend\{
     HomeController,
+    FrontendController,
 };
 
 
@@ -33,6 +34,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //------------------------------------FrontEnd--------------------------------------------//
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
+
+
+//-------------------------------------About------------------------------------------------//
+Route::get('/about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
 
 
 //----------------------------------------Category-----------------------------------------//
