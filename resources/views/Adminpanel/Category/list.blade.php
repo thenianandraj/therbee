@@ -6,12 +6,12 @@
                 <a href="javascript:history.back()">
                     <span class="menu-title">
                         <i class="mdi mdi-arrow-left-bold-circle"></i></a>
-                </span>Product List
+                </span>Category List
             </h3>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Product List</li>
+                    <li class="breadcrumb-item active" aria-current="page">Category List</li>
                 </ol>
             </nav>
         </div>
