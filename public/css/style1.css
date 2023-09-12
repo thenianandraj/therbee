@@ -14,12 +14,14 @@
 
 .btn.btn-prink {
     background-color: pink;
-    /* You can customize other styles as needed */
-    color: white; /* White text on a pink background, for example */
-    border: 1px solid #ff1493; /* Pink border */
-    /* Add more CSS properties as needed */
+    color: white; 
+    border: 1px solid #ff1493; 
   }
-  /* Custom CSS to remove image borders */
+.btn.btn-hotpink{
+	color: white; 
+	background-color: #FF91AA;
+}
+  
 .img-no-border {
   border: none;
 }
@@ -59,4 +61,6 @@
 .featured__controls ul li:last-child {
 	margin-right: 0;
 }
-
+.subscribe{
+	background-color: #ffc0cb;
+}
