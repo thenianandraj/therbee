@@ -1,13 +1,6 @@
 @include('Frontend.partials.app')
 <!----------------------------------------------Main-content---------------------------------------------->
-<section id="home-section" class="hero">
-    <div class="home-slider owl-carousel">
-        {{-- <div class="slider-item" style="images/Beautypost.jpg max-width=100%; height=400px;">
-        </div> --}}
-        <img class="slider-item" src="images/Beautypost.jpg" style="max-width=100%; height=520px;">
-    </div>
-</section>
-
+@include('Frontend.partials.second_header')
 
 <section class="ftco-section">
     <div class="container">
@@ -28,7 +21,7 @@
                         <img class="img-fluid" src="{{ asset($category->image) }}" alt="Category Image" style="border: none;">
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
-                        <h3 class="bold-category-name">{{ $category->name }}</h3>
+                        <h3 class="text-h3">{{ $category->name }}</h3>
                     </div>
                 </div>
             </div>
@@ -51,8 +44,6 @@
                         @endforeach
                     </ul>
                 </div>
-                
-                
             </div>
         </div>
     </div>
@@ -94,32 +85,8 @@
     </div>
 </section>
 
+@include('Frontend.partials.second_footer')
 
-<section class="ftco-section img">
-    <img class="img-prod" src="/images/Organicpost.jpg" alt="image" style="width:100%;height: 510px;">
-   
-</section>
-<br>
-
-
-<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-    <div class="container py-4">
-        <div class="row d-flex justify-content-center py-5">
-            <div class="col-md-6">
-                <h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-                <span>Get e-mail updates about our latest shops and special offers</span>
-            </div>
-            <div class="col-md-6 d-flex align-items-center">
-                <form action="#" class="subscribe-form">
-                    <div class="form-group d-flex">
-                        <input type="text" class="form-control" placeholder="Enter email address">
-                        <input type="submit" value="Subscribe" class="submit px-3">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
 <!----------------------------------------------Main-content---------------------------------------------->
 <!-- Add jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
