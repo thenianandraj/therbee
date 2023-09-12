@@ -75,14 +75,14 @@
                                 </div>
                                 <div class="bottom-area d-flex px-3">
                                     <div class="m-auto d-flex">
-                                        <a href="#" class="heart d-flex justify-content-center align-items-center">
+                                        <a href="#" class="heart d-flex justify-content-center align-items-center" >
                                             <span><i class="ion-ios-heart"></i></span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="add-to-cart-button text-center mt-2">
-                                <button class="btn btn-primary">Add to Cart</button>
+                                <button class="btn btn-hotpink">Add to Cart</button>
                             </div>
                             <br>
                         </div>
