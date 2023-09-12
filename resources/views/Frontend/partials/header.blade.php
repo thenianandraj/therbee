@@ -18,7 +18,7 @@
               <li class="nav-item"><a href="blog.html" class="nav-link">MYORDERS</a></li>
               <li class="nav-item"><a href="blog.html" class="nav-link">wISHLIST</a></li>
               <li class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></li>
-              <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>LOGIN[0]</a></li>
+              <li class="nav-item cta cta-colored"><a href="/login" class="nav-link"><span class="icon-shopping_cart"></span>LOGIN[0]</a></li>
           </ul>
       </div>
   </div>
