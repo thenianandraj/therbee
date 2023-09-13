@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\{
 use App\Http\Controllers\Frontend\{
     HomeController,
     FrontendController,
+    OrderController,
+    WishlistController
 };
 
 
@@ -39,6 +41,17 @@ Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])-
 //-------------------------------------About------------------------------------------------//
 Route::get('/about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
 Route::get('/product_single{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productSingle'])->name('product.single');
+
+//------------------------------------Order----------------------------------------------------//
+Route::get('/list_cart', [App\Http\Controllers\Frontend\OrderController::class, 'listCart'])->name('cart.list');
+
+//----------------------wishlist-------------------------------------------//
+Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add');
+Route::get('/remove-wishlist/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'removeWishlist']);
+Route::get('/wishlist' ,[App\Http\Controllers\Frontend\WishlistController::class, 'wishlist']);
+
+
+
 
 
 //----------------------------------------Category-----------------------------------------//
