@@ -107,12 +107,11 @@
 							</a>
 						</div>
 					</div>
-					<div class="add-to-cart-button text-center mt-2">
-						<button class="btn btn-hotpink">Add to Cart</button>
-					</div>
 				</div>
+				<div class="add-to-cart-button text-center mt-2">
+					<button class="btn btn-hotpink">Add to Cart</button>
+				</div><br>
 			</div>
-
 			@endforeach
 		</div>
 	</div>
