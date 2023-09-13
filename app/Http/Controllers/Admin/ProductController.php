@@ -33,7 +33,7 @@ class ProductController extends Controller
             'original_rate' => ucwords($request->input('original_rate')),
             'discount_rate' => ucwords($request->input('discount_rate')),
             'keywords' => ucwords($request->input('keywords')),
-            'description' => ucwords($request->input('description')),
+            'description' => trim($request->input('description')),
             'image' => $destinationPath . "/" . $file->getClientOriginalName(),
             'category' => ucwords($request->input('category')),
             'add_product' => $request->input('is_default'),
