@@ -53,7 +53,7 @@
                 @if($product->add_product == '1')
                     <div class="col-md-6 col-lg-3 ftco-animate">
                         <div class="product {{ strtolower(str_replace(' ', '-', $product->category)) }}">
-                            <a href="#" class="img-prod"><img class="img-fluid" src="{{asset($product->image)}}" alt="Colorlib Template">
+                            <a href="/product_single{{$product->id}}" class="img-prod"><img class="img-fluid" src="{{asset($product->image)}}" alt="Colorlib Template">
                                 <span class="status">30%</span>
                                 <div class="overlay"></div>
                             </a>

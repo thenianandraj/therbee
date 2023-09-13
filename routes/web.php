@@ -38,6 +38,7 @@ Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])-
 
 //-------------------------------------About------------------------------------------------//
 Route::get('/about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
+Route::get('/product_single{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productSingle'])->name('product.single');
 
 
 //----------------------------------------Category-----------------------------------------//
