@@ -1,4 +1,4 @@
-@include('header')
+@include('Frontend.partials.app')
 <div class="container">
 		<div class="row justify-content-center mb-3 pb-3">
 			<div class="col-md-12 heading-section text-center ftco-animate">
@@ -10,18 +10,17 @@
 	</div>
 <section class="ftco-section">
 	<div class="container">
-		@foreach ($product as $dashboard)
 		<form action="/add-cart" method="post">
 			@csrf
-			<input type="hidden" name="product_id" value="{{ $dashboard->id }}">
+			<input type="hidden" name="product_id" value="{{ $product->id }}">
 
 			<div class="row">
 				<div class="col-lg-6 mb-5 ftco-animate">
-					<a href="/{{ $dashboard->image1 }}" class="image-popup"><img src="/{{ $dashboard->image1 }}" class="img-fluid" alt="Colorlib Template"></a><br><br>
-					<a href="/{{ $dashboard->image1 }}" class="image-popup"><img src="/{{ $dashboard->image2 }}" class="img-fluid" style="height:100px;" alt="Colorlib Template"></a>
+					<a href="/{{ $product->image }}" class="image-popup"><img src="/{{ $product->image }}" class="img-fluid" alt="Colorlib Template"></a><br><br>
+					{{-- <a href="/{{ $dashboard->image }}" class="image-popup"><img src="/{{ $dashboard->image }}" class="img-fluid" style="height:100px;" alt="Colorlib Template"></a> --}}
 				</div>
 				<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-					<h3>{{ $dashboard->productName }}</h3>
+					<h3>{{ $product->product_name }}</h3>
 					<div class="rating d-flex">
 						<p class="text-left mr-4">
 							<a href="#" class="mr-2">5.0</a>
@@ -39,8 +38,8 @@
 						</p>
 					</div>
 
-					<p class="price"><span class="mr-2 price-dc">₹{{ $dashboard->DiscountRate }}</span><span class="price-sale"><s>₹{{ $dashboard->OriginalRate }}</s></span></p>
-					<p>{{ $dashboard->Description }}</p>
+					<p class="price"><span class="mr-2 price-dc">₹{{ $product->discount_rate }}</span><span class="price-sale"><s>₹{{ $product->original_rate }}</s></span></p>
+					<p>{{ $product->description }}</p>
 					<div class="row mt-4">
 
 						<div class="w-100"></div>
@@ -68,7 +67,7 @@
 			</div>
 		</form>
 	</div>
-	@endforeach
+
 </section>
 
 <section class="ftco-section">
@@ -85,15 +84,15 @@
 		<div class="row">
 			@foreach ($relatedProducts as $dashboard)
 			<div class="col-md-3 product">
-				<a href='/product-single/{{$dashboard->id}}' class="img-prod"><img class="img-fluid" src="/{{ $dashboard->image1 }}" alt="Colorlib Template">
+				<a href='/product-single{{$dashboard->id}}' class="img-prod"><img class="img-fluid" src="/{{ $dashboard->image }}" alt="product">
 					<span class="status">30%</span>
 					<div class="overlay"></div>
 				</a>
 				<div class="text py-3 pb-4 px-3 text-center">
-					<h3><a href="#">{{ $dashboard->productName }}</a></h3>
+					<h3><a href="#">{{ $dashboard->product_name }}</a></h3>
 					<div class="d-flex">
 						<div class="pricing">
-							<p class="price"><span class="mr-2 price-dc">₹{{ $dashboard->OriginalRate }}</span><span class="price-sale">{{ $dashboard->DiscountRate }}</span></p>
+							<p class="price"><span class="mr-2 price-dc">₹{{ $dashboard->original_rate }}</span><span class="price-sale">{{ $dashboard->discount_rate }}</span></p>
 						</div>
 					</div>
 					<span class="fa fa-star checked "></span>
@@ -103,16 +102,13 @@
 					<span class="fa fa-star checked"></span>
 					<div class="bottom-area d-flex px-3">
 						<div class="m-auto d-flex">
-							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
-								<span><i class="ion-ios-menu"></i></span>
-							</a>
-							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-								<span><i class="ion-ios-cart"></i></span>
-							</a>
 							<a href="#" class="heart d-flex justify-content-center align-items-center ">
 								<span><i class="ion-ios-heart"></i></span>
 							</a>
 						</div>
+					</div>
+					<div class="add-to-cart-button text-center mt-2">
+						<button class="btn btn-hotpink">Add to Cart</button>
 					</div>
 				</div>
 			</div>
@@ -121,5 +117,5 @@
 		</div>
 	</div>
 </section>
-@include('second-footer')
-@include('footer')
+@include('Frontend.partials.second_footer')
+@include('Frontend.partials.footer')
