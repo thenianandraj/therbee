@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="bottom-area d-flex px-3">
                                     <div class="m-auto d-flex">
-                                        <a href="#" class="heart d-flex justify-content-center align-items-center" >
+                                        <a href="" class="heart d-flex justify-content-center align-items-center" data-product-id="{{ $product->id }}" >
                                             <span><i class="ion-ios-heart"></i></span>
                                         </a>
                                     </div>
@@ -113,6 +113,33 @@ $(document).ready(function () {
     });
 });
 </script>
+<script>
+    $(document).ready(function () {
+        $('.heart').click(function (event) {
+            event.preventDefault();
+
+            var productId = $(this).data('product-id');
+            var url = "{{ route('wishlist.add', ':id') }}";
+            url = url.replace(':id', productId);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+                success: function (response) {
+                    console.log(response.message);
+                    // Refresh or update the UI as needed
+                },
+                error: function (error) {
+                    console.error(error.responseJSON.error);
+                }
+            });
+        });
+    });
+</script>
+
 
 @include('Frontend.partials.footer')
 
