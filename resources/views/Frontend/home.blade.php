@@ -85,6 +85,7 @@
     </div>
 </section>
 
+
 @include('Frontend.partials.second_footer')
 
 <!----------------------------------------------Main-content---------------------------------------------->

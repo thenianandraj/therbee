@@ -44,6 +44,8 @@ Route::get('/product_single{id}', [App\Http\Controllers\Frontend\FrontendControl
 
 //------------------------------------Order----------------------------------------------------//
 Route::get('/list_cart', [App\Http\Controllers\Frontend\OrderController::class, 'listCart'])->name('cart.list');
+Route::get('/cart', [App\Http\Controllers\Frontend\OrderController::class, 'list'])->name('cart');
+
 
 //----------------------wishlist-------------------------------------------//
 Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add');
