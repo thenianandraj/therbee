@@ -17,7 +17,7 @@
             @foreach ($categories as $category)
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
-                    <a href="#" class="img-prod">
+                    <a href="/category_single{{$category->name}}" class="img-prod">
                         <img class="img-fluid" src="{{ asset($category->image) }}" alt="Category Image" style="border: none;">
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
@@ -73,7 +73,14 @@
                                 </div>
                             </div>
                             <div class="add-to-cart-button text-center mt-2">
-                                <button class="btn btn-hotpink">Add to Cart</button>
+                                <form action="/add_cart" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" value="{{ $product->product_name }}" name="name">
+                                    <input type="hidden" value="{{ $product->discount_Rate}}" name="price">
+                                    <input type="hidden" value="1" name="quantity">
+                                <button  class="btn btn-hotpink">Add to Cart</button>
+                            </form>
                             </div>
                             <br>
                         </div>
@@ -118,11 +125,14 @@ $(document).ready(function () {
     $(document).ready(function () {
         $('.heart').click(function (event) {
             event.preventDefault();
+            if (!{{ Auth::check() ? 'true' : 'false' }}) {
+            window.location.href = '/login';
+             } else {
 
             var productId = $(this).data('product-id');
             var url = "{{ route('wishlist.add', ':id') }}";
             url = url.replace(':id', productId);
-
+             }
             $.ajax({
                 url: url,
                 type: 'GET',
@@ -131,7 +141,6 @@ $(document).ready(function () {
 				},
                 success: function (response) {
                     console.log(response.message);
-                    // Refresh or update the UI as needed
                 },
                 error: function (error) {
                     console.error(error.responseJSON.error);

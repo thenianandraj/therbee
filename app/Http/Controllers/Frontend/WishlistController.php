@@ -16,33 +16,34 @@ class WishlistController extends Controller
    
     public function add($id)
     {
+
         $user = Auth::user();
 
         if (!$user) {
-            return response()->json(['error' => 'User not authenticated']);
+            return redirect('/login'); 
         }
-
+    
         $product = Product::find($id);
-
+    
         if (!$product) {
-            return response()->json(['error' => 'Product not found']);
+            return redirect()->back()->with('error', 'Product not found');
         }
-
+    
         $wishlistItem = Wishlist::where('product_id', $product->id)
             ->where('user_id', $user->id)
             ->first();
-
+    
         if ($wishlistItem) {
             $wishlistItem->delete();
-
-            return response()->json(['message' => 'Item removed from wishlist']);
+    
+            return redirect()->back()->with('message', 'Item removed from wishlist');
         } else {
             Wishlist::create([
                 'product_id' => $product->id,
                 'user_id' => $user->id,
             ]);
-
-            return response()->json(['message' => 'Item added to wishlist']);
+    
+            return redirect()->back()->with('message', 'Item added to wishlist');
         }
     }
 

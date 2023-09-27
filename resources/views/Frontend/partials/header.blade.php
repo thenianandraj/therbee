@@ -11,24 +11,23 @@
             <span class="input-group-text custom-pink-bg"><i class="icon-search"></i></span>
         </div>
     </div>
-      <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item active"><a href="/" class="nav-link">HOME</a></li>
-              <li class="nav-item"><a href="/about" class="nav-link">ABOUT</a></li>
-              <li class="nav-item"><a href="/list_cart" class="nav-link">MYORDERS</a></li>
-              <li class="nav-item"><a href="/wishlist" class="nav-link">wISHLIST</a></li>
-              <li class="nav-item"><a href="contact.html" class="nav-link">CONTACT</a></li>
-                @if(Auth::user())
-                <li class="nav-item cta cta-colored">
-                    <a href="cart" class="nav-link">
-                        <span class="icon-shopping_cart"></span>{{(Auth::user()->name) }}
-                        {{-- [{{ Auth::check() ? auth()->user()->cartItems->count() : 0 }}] --}}
-                    </a>
-                </li>							
-                @else
-                <li class="nav-item cta cta-colored"><a href="/login" class="nav-link"><span class="icon-shopping_cart"></span>LOGIN[0]</a></li>
-                @endif
-          </ul>
-      </div>
-  </div>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="/" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="/list_cart" class="nav-link">MYORDERS</a></li>
+                <li class="nav-item"><a href="/wishlist" class="nav-link">wISHLIST</a></li>
+                  @if(Auth::user())
+                  <li class="nav-item cta cta-colored">
+                      <a href="cart" class="nav-link">
+                          <span class="icon-shopping_cart"></span>{{(Auth::user()->name) }}
+                          {{-- [{{ Auth::check() ? auth()->user()->cartItems->count() : 0 }}] --}}
+                      </a>
+                  </li>							
+                  @else
+                  <li class="nav-item cta cta-colored"><a href="/login" class="nav-link"><span class="icon-shopping_cart"></span>LOGIN[0]</a></li>
+                  @endif
+            </ul>
+        </div>
+     </div>  
+ </div>
 </nav>
