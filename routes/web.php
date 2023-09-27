@@ -10,7 +10,8 @@ use App\Http\Controllers\Frontend\{
     HomeController,
     FrontendController,
     OrderController,
-    WishlistController
+    WishlistController,
+    CartController
 };
 
 
@@ -36,6 +37,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //------------------------------------FrontEnd--------------------------------------------//
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
+Route::get('/category_single{category}', [App\Http\Controllers\Frontend\HomeController::class, 'categorySingle'])->name('category.single');
+
 
 
 //-------------------------------------About------------------------------------------------//
@@ -48,10 +51,12 @@ Route::get('/cart', [App\Http\Controllers\Frontend\OrderController::class, 'list
 
 
 //----------------------wishlist-------------------------------------------//
-Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add');
+Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add')->middleware('auth.custom');
 Route::get('/remove-wishlist/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'removeWishlist']);
 Route::get('/wishlist' ,[App\Http\Controllers\Frontend\WishlistController::class, 'wishlist']);
 
+//-----------------------------------------Cart----------------------------------------------------//
+Route::post('/add_cart' ,[App\Http\Controllers\Frontend\CartController::class, 'addcart']);
 
 
 
@@ -66,6 +71,7 @@ Route::put('/category_update/{id}',[App\Http\Controllers\Admin\CategoryControlle
 Route::get('/category_delete{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('category.delete');
 
 
+
 //-----------------------------------------Product------------------------------------------//
 Route::get('/product_list',[App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
 Route::get('/product_create',[App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
@@ -73,5 +79,6 @@ Route::post('/product_store',[App\Http\Controllers\Admin\ProductController::clas
 Route::get('/product_edit{id}',[App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
 Route::put('/product_update/{id}',[App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product.update');
 Route::get('/product_delete{id}',[App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('product.delete');
+
 
 
