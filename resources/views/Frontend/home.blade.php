@@ -151,6 +151,7 @@ $(document).ready(function () {
 </script>
 
 
+
 @include('Frontend.partials.footer')
 
 

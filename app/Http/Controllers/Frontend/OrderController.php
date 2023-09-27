@@ -14,7 +14,7 @@ class OrderController extends Controller
 {
    
 
-    public function listCart()
+    public function listOrder()
     {
         if (Auth::user()) {
             $user_Id = Auth::user()->id;
@@ -34,8 +34,6 @@ class OrderController extends Controller
             return view('auth.login');
         }
     }
-    public function list(){
-        return view('Frontend.Cart.cart_list');
-    }
+  
 
 }

@@ -29,39 +29,40 @@ use App\Http\Controllers\Frontend\{
 
 
 
-//------------------------------------Auth------------------------------------------//
+//------------------------------------Auth------------------------------------------------------------------//
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//------------------------------------FrontEnd--------------------------------------------//
+//------------------------------------FrontEnd--------------------------------------------------------------//
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
 Route::get('/category_single{category}', [App\Http\Controllers\Frontend\HomeController::class, 'categorySingle'])->name('category.single');
 
 
 
-//-------------------------------------About------------------------------------------------//
+//-------------------------------------About-----------------------------------------------------------------//
 Route::get('/about', [App\Http\Controllers\Frontend\FrontendController::class, 'about'])->name('about');
 Route::get('/product_single{id}', [App\Http\Controllers\Frontend\FrontendController::class, 'productSingle'])->name('product.single');
 
-//------------------------------------Order----------------------------------------------------//
-Route::get('/list_cart', [App\Http\Controllers\Frontend\OrderController::class, 'listCart'])->name('cart.list');
-Route::get('/cart', [App\Http\Controllers\Frontend\OrderController::class, 'list'])->name('cart');
+//------------------------------------Order-------------------------------------------------------------------//
+Route::get('/list_order', [App\Http\Controllers\Frontend\OrderController::class, 'listCart'])->name('cart.list');
 
 
-//----------------------wishlist-------------------------------------------//
+
+//----------------------wishlist-------------------------------------------------------------------------------//
 Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add')->middleware('auth.custom');
 Route::get('/remove-wishlist/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'removeWishlist']);
 Route::get('/wishlist' ,[App\Http\Controllers\Frontend\WishlistController::class, 'wishlist']);
 
-//-----------------------------------------Cart----------------------------------------------------//
+//-----------------------------------------Cart---------------------------------------------------------------//
 Route::post('/add_cart' ,[App\Http\Controllers\Frontend\CartController::class, 'addcart']);
+Route::get('/list_cart', [App\Http\Controllers\Frontend\CartController::class, 'list'])->name('cart.list');
 
 
 
 
-//----------------------------------------Category-----------------------------------------//
+//----------------------------------------Category-----------------------------------------------------------//
 
 Route::get('/category_list',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
 Route::get('/category_create',[App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
@@ -72,7 +73,7 @@ Route::get('/category_delete{id}',[App\Http\Controllers\Admin\CategoryController
 
 
 
-//-----------------------------------------Product------------------------------------------//
+//-----------------------------------------Product--------------------------------------------------------//
 Route::get('/product_list',[App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
 Route::get('/product_create',[App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
 Route::post('/product_store',[App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product.store');
