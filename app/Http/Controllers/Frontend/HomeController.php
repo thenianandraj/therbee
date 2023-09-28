@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\UserProfile;
+use DB;
 
 class HomeController extends Controller
 {
@@ -40,5 +41,23 @@ class HomeController extends Controller
         $userAddress->save();
 
         return back();
+    }
+    public function search(Request $request)
+    {
+        $keywords = $request->input('keywords');
+        $searchResults = Product::where('product_name', 'LIKE', "%$keywords%")
+                                ->orWhere('original_rate', 'LIKE', "%$keywords%")
+                                ->orWhere('discount_rate', 'LIKE', "%$keywords%")
+                                ->orWhere('description', 'LIKE', "%$keywords%")
+                                ->orWhere('category', 'LIKE', "%$keywords%")
+                                ->orWhere(DB::raw('LOWER(category)'), 'LIKE', "%" . strtolower($keywords) . "%")
+                                ->get();
+
+        $product = Product::all();
+        $categories = Category::all();
+
+        // $relatedProducts = DB::select('select * from product');
+        // print_r($searchResults);
+        return view('Frontend.Product.search_result', compact('product', 'categories','searchResults'));
     }
 }

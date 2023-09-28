@@ -39,6 +39,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
 Route::post('/get_address',[App\Http\Controllers\Frontend\HomeController::class,'addAddress']);
 Route::get('/category_single{category}', [App\Http\Controllers\Frontend\HomeController::class, 'categorySingle'])->name('category.single');
+Route::get('/global_search', [App\Http\Controllers\Frontend\HomeController::class, 'search'])->name('search.global');
 
 
 
