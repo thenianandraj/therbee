@@ -55,7 +55,7 @@ class WishlistController extends Controller
             $products = Product::all();
             $wishlistItems = $user->wishlistItems;
 
-            return view('Frontend.wishlist', compact('categories', 'products', 'wishlistItems'));
+            return view('Frontend.Product.wishlist', compact('categories', 'products', 'wishlistItems'));
         } else {
             return view('auth.login');
         }

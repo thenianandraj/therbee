@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use DB;
 // use App\Models\UserAddress;
 
 class CartController extends Controller
@@ -42,10 +43,43 @@ class CartController extends Controller
     
             return view('Frontend.Cart.cart_list')->with('users', $cartItems)
                                ->with('product', $products)
-                               ->with('category', $categories);
+                               ->with('categories', $categories);
         } else {
             return view('auth.login');
         }
        
     }
+    public function updateCart($id, $ops)
+    {
+        $upd_qty = 9; 
+
+       
+        $cartItem = Cart::find($id);
+
+        if ($cartItem) {
+            $existingQty = $cartItem->qty;
+
+            if ($ops == "plus") {
+                $upd_qty = $existingQty + 1;
+            } elseif ($ops == "minus" && $existingQty > 0) {
+                $upd_qty = $existingQty - 1;
+            }
+
+            $cartItem->update(['qty' => $upd_qty]);
+        }
+
+        return back();
+    }
+    public function removeCart($id)
+    {
+        $cartItem = Cart::find($id);
+
+        if ($cartItem) {
+            $cartItem->delete();
+        }
+
+        return back();
+    }
+   
+
 }

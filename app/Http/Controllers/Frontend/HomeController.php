@@ -23,6 +23,6 @@ class HomeController extends Controller
         $categories = Category::all(); 
         $product = Product::where('category', $category)->get();
     
-        return view('Frontend.category_single',compact('product','categories'));
+        return view('Frontend.Product.category_single',compact('product','categories'));
     }
 }
