@@ -15,6 +15,7 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/login.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
   </head>
@@ -24,6 +25,15 @@
         <div class="content-wrapper d-flex align-items-center auth">
           <div class="row flex-grow">
             <div class="col-lg-4 mx-auto">
+              <div class="container bg-color">
+                <nav class="navbar navbar-expand-md bg-color">
+                    <a class="btn btn-danger nav-link" href="{{ url('/') }}">
+                     {{ config('app.name', 'Laravel') }}
+                 </a> &nbsp;&nbsp;&nbsp;
+                 <a class="btn btn-danger nav-link" href="{{ route('login') }}" >Login</a>&nbsp;&nbsp;&nbsp;
+                 <a class="btn btn-danger nav-link" href="{{ route('register') }}">Register</a>
+                 </nav><br><br>
+            </div>
               <div class="auth-form-light text-left p-5">
                 <div class="brand-logo">
                   <img src="../../images/WoodenLogo.jpg">
@@ -60,7 +70,7 @@
                     <input type="password" class="form-control form-control-lg" id="confirm_password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
                   </div>
                   <div class="mt-3">
-                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
+                    <button class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                   </div>
                   </div>
                 </form>

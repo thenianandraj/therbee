@@ -20,9 +20,9 @@ class HomeController extends Controller
         return view('Frontend.partials.header', ['categories' => $categories]);
     }
     public function categorySingle($category){
-        $getCategory = Category::all(); 
+        $categories = Category::all(); 
         $product = Product::where('category', $category)->get();
     
-        return view('Frontend.category_single',compact('product','getCategory'));
+        return view('Frontend.category_single',compact('product','categories'));
     }
 }
