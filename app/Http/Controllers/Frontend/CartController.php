@@ -27,28 +27,29 @@ class CartController extends Controller
             return view('auth.login');
         }
     }
-    public function list(){
+ 
+    public function listCart()
+    {
         if (Auth::user()) {
             $user = Auth::user();
-    
-            $categories = Category::all();        
-            $products = Product::all();    
-            $cartItems = $user->cartItems()
-            ->select('carts.*', 'products.*')
-            ->join('products', 'carts.product_id', '=', 'products.id')
-            ->get();
-    
-            // Retrieve the user's addresses
-            // $userAddresses = $user->addresses;
-    
-            return view('Frontend.Cart.cart_list')->with('users', $cartItems)
-                               ->with('product', $products)
-                               ->with('categories', $categories);
+            $category = Category::all();
+            $product = Product::all();
+            $users = $user->cartItems()
+                ->select('carts.*', 'products.*')
+                ->join('products', 'carts.product_id', '=', 'products.id')
+                ->get();
+            $address = $user->profile;
+
+            return view('Frontend.Cart.cart_list')
+                ->with('address', $address)
+                ->with('users', $users)
+                ->with('product', $product)
+                ->with('categories', $category);
         } else {
             return view('auth.login');
         }
-       
     }
+
     public function updateCart($id, $ops)
     {
         $upd_qty = 9; 

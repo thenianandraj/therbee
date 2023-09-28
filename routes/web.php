@@ -37,6 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //------------------------------------FrontEnd--------------------------------------------------------------//
 Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
+Route::post('/get_address',[App\Http\Controllers\Frontend\HomeController::class,'addAddress']);
 Route::get('/category_single{category}', [App\Http\Controllers\Frontend\HomeController::class, 'categorySingle'])->name('category.single');
 
 
@@ -57,7 +58,7 @@ Route::get('/wishlist' ,[App\Http\Controllers\Frontend\WishlistController::class
 
 //-----------------------------------------Cart---------------------------------------------------------------//
 Route::post('/add_cart' ,[App\Http\Controllers\Frontend\CartController::class, 'addcart']);
-Route::get('/list_cart', [App\Http\Controllers\Frontend\CartController::class, 'list'])->name('cart.list');
+Route::get('/list_cart', [App\Http\Controllers\Frontend\CartController::class, 'listCart'])->name('cart.list');
 Route::get('/update_cart/{id}/{ops}', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
 Route::get('/remove_cart/{id}',[App\Http\Controllers\Frontend\CartController::class,'removeCart']);
 

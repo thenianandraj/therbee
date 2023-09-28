@@ -73,54 +73,55 @@
             </div>
         </div>
         <div class="row justify-content-end">
-            {{-- <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
-                  <div class="cart-total mb-3">
-                      <h3>Coupon Code</h3>
-                      <p>Enter your coupon code if you have one</p>
-                        <form action="#" class="info">
-                <div class="form-group">
-                    <label for="">Coupon code</label>
-                  <input type="text" class="form-control text-left px-3" placeholder="">
-                </div>
-              </form>
-                  </div>
-                  <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Apply Coupon</a></p>
-              </div> --}}
+            @if($address)
+            @foreach ($address as $address)
+            <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+              <div class="cart-total mb-3">
+                <h3>{{$address->user_name}}</h3>
+                <p>{{$address->user_address}}</p>
+                <p>{{$address->landmark}}</p>
+                <p>{{$address->user_mobile}}</p>
+                <p>{{$address->postal_code}}</p>
+              </div>
+            </div>
+            @endforeach
+            @else
             <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
                     <h3>Delivery Details</h3>
-                    {{-- <p>Enter your destination to get a shipping estimate</p> --}}
-                    <form action="#" class="info">
+                    <form action="/get_address" method="POST" class="info" enctype="multipart/form-data">
+                      @csrf
                         <div class="form-group">
                             <label for="">Full Name</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
+                            <input type="text" class="form-control text-left px-3"  name="full_name" placeholder="">
                         </div>
                         <div class="form-group">
                           <label for="country">Mobile Number</label>
-                          <input type="text" class="form-control text-left px-3" placeholder="">
+                          <input type="text" class="form-control text-left px-3"name="mobile_no" placeholder="">
                       </div>
                       <div class="form-group">
                         <label for="country">Address</label>
-                        <input type="text" class="form-control text-left px-3" placeholder="">
+                        <input type="text" class="form-control text-left px-3" name="address" placeholder="">
                       </div>
                         <div class="form-group">
                             <label for="country">Landmark</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
+                            <input type="text" class="form-control text-left px-3" name="landmark" placeholder="">
                         </div>
                         <div class="form-group">
                             <label for="country">Zip/Postal Code</label>
-                            <input type="text" class="form-control text-left px-3" placeholder="">
+                            <input type="text" class="form-control text-left px-3" name="postal_code" placeholder="">
                         </div>
                        <input type="checkbox" value="1" id="" name="is_default">&nbsp;Make this my default address
                     <input type="submit" class="btn btn-primary py-3 px-4" value="Use This Address">
                   </form>
                 </div>
             </div>
+            @endif
             <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                 <div class="cart-total mb-3">
                     <h3>Cart Totals</h3>
                     <p class="d-flex">
-                        <span>Subtotal</span>
+                        <span>Subtotal</span> 
                         <span>₹{{$a}}</span>
                     </p>
                     <p class="d-flex">
@@ -142,7 +143,4 @@
         </div>
     </div>
 </section>
-
-
-
 @include('Frontend.partials.footer')
