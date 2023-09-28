@@ -6,13 +6,14 @@
             aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
-
+        <form action="/global_search" method="GET">
         <div class="input-group input-group-sm">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control custom-input" type="search" placeholder="Search" name="keywords" aria-label="Search">
             <div class="input-group-append">
                 <span class="input-group-text custom-pink-bg"><i class="icon-search"></i></span>
             </div>
         </div>
+    </form>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="/" class="nav-link">HOME</a></li>
