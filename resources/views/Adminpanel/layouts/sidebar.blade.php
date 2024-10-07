@@ -1,11 +1,11 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="index.html">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link" href="category_list">
           <span class="menu-title">Category</span>
@@ -18,7 +18,7 @@
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="pages/charts/chartjs.html">
           <span class="menu-title">Reviewer</span>
           <i class="mdi mdi-chart-bar menu-icon"></i>
@@ -41,6 +41,6 @@
           <span class="menu-title">Billing</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>

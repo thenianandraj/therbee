@@ -36,7 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 //------------------------------------FrontEnd--------------------------------------------------------------//
-Route::get('/', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
+Route::get('/home', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('welcome');
 Route::post('/get_address',[App\Http\Controllers\Frontend\HomeController::class,'addAddress']);
 Route::get('/category_single{category}', [App\Http\Controllers\Frontend\HomeController::class, 'categorySingle'])->name('category.single');
 Route::get('/global_search', [App\Http\Controllers\Frontend\HomeController::class, 'search'])->name('search.global');
@@ -69,7 +69,7 @@ Route::get('/remove_cart/{id}',[App\Http\Controllers\Frontend\CartController::cl
 
 
 //----------------------------------------Category-----------------------------------------------------------//
-
+Route::get('/',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
 Route::get('/category_list',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
 Route::get('/category_create',[App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
 Route::post('/category_store',[App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');

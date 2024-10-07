@@ -17,6 +17,7 @@ class Product extends Model
         'discount_rate',
         'keywords',
         'description',
+        'file_paths',
         'image',
         'category',
         'add_product',
