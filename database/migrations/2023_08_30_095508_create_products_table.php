@@ -21,6 +21,13 @@ return new class extends Migration
             $table->string('keywords');
             $table->integer('add_product');
             $table->string('category');
+            $table->string('subcategory')->nullable();
+            $table->string('files1')->nullable();
+            $table->string('files2')->nullable();
+            $table->string('files3')->nullable();
+            $table->string('files4')->nullable();
+            $table->string('files5')->nullable();
+            $table->string('files6')->nullable();
             $table->timestamps();
         });
     }

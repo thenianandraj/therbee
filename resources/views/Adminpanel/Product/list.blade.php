@@ -85,8 +85,8 @@
                                                 <td>{{ $product->original_rate }}</td>
                                                 <td>{{ $product->discount_rate }}</td>
                                                 <td>
-                                                    <a href="/product_edit{{ $product->id }}" class="mdi mdi-lead-pencil"></a>
-                                                    <a href="/product_delete{{ $product->id }}" class="mdi mdi-delete"></a>
+                                                    <a href="/product_edit{{ $product->id }}" class="mdi mdi-lead-pencil" style="font-size: 24px;" ></a>
+                                                    <a href="/product_delete{{ $product->id }}" class="mdi mdi-delete" style="font-size: 24px; color:red;"></a>
                                                 </td>
                                             </tr>
                                         @endforeach

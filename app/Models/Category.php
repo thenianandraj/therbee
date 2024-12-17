@@ -15,6 +15,12 @@ class Category extends Model
         'name',
         'description',
         'image',
+        'subcategories', // JSON field
+    ];
+
+    // Cast subcategories to array for easy handling
+    protected $casts = [
+        'subcategories' => 'array', // Automatically handles JSON conversion
     ];
     public function products()
     {

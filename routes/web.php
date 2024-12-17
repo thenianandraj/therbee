@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\Admin\{
     CategoryController,
     ProductController,
 };
-
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\{
     HomeController,
     FrontendController,
@@ -29,9 +31,45 @@ use App\Http\Controllers\Frontend\{
 
 
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Protected CRUD routes
+Route::middleware('auth')->group(function () {
+
+    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+
+//----------------------------------------Category-----------------------------------------------------------//
+//Route::get('/',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
+Route::get('/category_list',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
+Route::get('/category_create',[App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+Route::post('/category_store',[App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+Route::get('/category_edit{id}',[App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category_update/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
+Route::get('/category_delete{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('category.delete');
+
+
+
+//-----------------------------------------Product--------------------------------------------------------//
+Route::get('/product_list',[App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
+Route::get('/product_create',[App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
+Route::post('/product_store',[App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product.store');
+Route::get('/product_edit{id}',[App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
+Route::put('/product_update/{id}',[App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product.update');
+Route::get('/product_delete{id}',[App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('product.delete');
+
+
+});
+
 //------------------------------------Auth------------------------------------------------------------------//
 Auth::routes();
+Route::get('/', function () {
+    return view('login');
+});
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
+
+Route::resource('products', ProductController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -62,30 +100,5 @@ Route::post('/add_cart' ,[App\Http\Controllers\Frontend\CartController::class, '
 Route::get('/list_cart', [App\Http\Controllers\Frontend\CartController::class, 'listCart'])->name('cart.list');
 Route::get('/update_cart/{id}/{ops}', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
 Route::get('/remove_cart/{id}',[App\Http\Controllers\Frontend\CartController::class,'removeCart']);
-
-
-
-
-
-
-//----------------------------------------Category-----------------------------------------------------------//
-Route::get('/',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
-Route::get('/category_list',[App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
-Route::get('/category_create',[App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
-Route::post('/category_store',[App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
-Route::get('/category_edit{id}',[App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
-Route::put('/category_update/{id}',[App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
-Route::get('/category_delete{id}',[App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('category.delete');
-
-
-
-//-----------------------------------------Product--------------------------------------------------------//
-Route::get('/product_list',[App\Http\Controllers\Admin\ProductController::class, 'index'])->name('product.list');
-Route::get('/product_create',[App\Http\Controllers\Admin\ProductController::class, 'create'])->name('product.create');
-Route::post('/product_store',[App\Http\Controllers\Admin\ProductController::class, 'store'])->name('product.store');
-Route::get('/product_edit{id}',[App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('product.edit');
-Route::put('/product_update/{id}',[App\Http\Controllers\Admin\ProductController::class, 'update'])->name('product.update');
-Route::get('/product_delete{id}',[App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('product.delete');
-
 
 

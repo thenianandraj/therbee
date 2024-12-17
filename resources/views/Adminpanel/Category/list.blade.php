@@ -66,8 +66,8 @@
                                             <td><img src="{{ $category->image }}" width="100%" height="100%"></td>
                                             <td>{{ $category->description }}</td>
                                             <td>
-                                                <a href="/category_edit{{ $category->id }}" class="mdi mdi-lead-pencil"></a>
-                                                <a href="/category_delete{{ $category->id }}" class="mdi mdi-delete"></a>
+                                                <a href="/category_edit{{ $category->id }}" class="mdi mdi-lead-pencil" style="font-size: 24px;"></a>
+                                                <a href="/category_delete{{ $category->id }}" class="mdi mdi-delete" style="font-size: 24px; color:red;"></a>
                                             </td>
                                         </tr>
                                     @endforeach
