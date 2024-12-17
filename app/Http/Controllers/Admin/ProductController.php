@@ -3,165 +3,188 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use App\Models\Product; 
+use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index() {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function index()
+    {
         $products = Product::latest()->paginate(5);
         return view('Adminpanel.Product.list', compact('products'));
     }
-    public function create() {
+    public function create()
+    {
         $category = Category::all();
-        return view('Adminpanel.Product.create',compact('category'));
+        return view('Adminpanel.Product.create', compact('category'));
     }
 
 
-public function store(Request $request)
-{
-    // Paths for products and files uploads
-    $imageUploadPath = public_path('uploads/products');
-    $fileUploadPath = public_path('uploads/files');
-    
-    $imagePaths = [];
-    $filePaths = [];
+    public function store(Request $request)
+    {
+        $request->validate([
+            'files1' => 'nullable|file|mimes:zip|max:2048',
+            'files2' => 'nullable|file|mimes:zip|max:2048',
+            'files3' => 'nullable|file|mimes:zip|max:2048',
+            'files4' => 'nullable|file|mimes:zip|max:2048',
+            'files5' => 'nullable|file|mimes:zip|max:2048',
+            'files6' => 'nullable|file|mimes:zip|max:2048',
+        ]);
 
-    // Handling the image upload to 'uploads/products'
-    if ($file = $request->file('image')) {
-        $imageName = time() . '_' . $file->getClientOriginalName(); // Unique file name
-    
-        // Move the image to the public/uploads/products directory
-        $file->move($imageUploadPath, $imageName);
-        $absoluteImagePath = $imageUploadPath . '/' . $imageName; // Absolute path for the main image
-        $relativeImagePath = 'uploads/products/' . $imageName; // Relative path for easy downloads
+        $imageUploadPath = public_path('uploads/products');
+        $fileUploadPath = public_path('uploads/files');
+        $projectBImagePath = '/Users/arjun/Downloads/Projects/npi_store_client/public/uploads/products';
+        $projectBFilePath = '/Users/arjun/Downloads/Projects/npi_store_client/public/uploads/files';
 
-        // Copy the image to the second project's public path (gold)
-        $projectBImagePath = 'D:\work sector\working projects\gold\public\uploads\products';
-        if (file_exists($absoluteImagePath)) {
-            // Copy the image from the first project to the second project
-            copy($absoluteImagePath, $projectBImagePath . '\\' . $imageName);
-        }
+        $imagePaths = [];
+        if ($file = $request->file('image')) {
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->move($imageUploadPath, $imageName);
+            $relativeImagePath = 'uploads/products/' . $imageName;
 
-        // Store both paths for the image
-        $imagePaths['therbee'] = $relativeImagePath; // First project (relative path)
-        $imagePaths['gold'] = $projectBImagePath . '\\' . $imageName; // Second project (absolute path)
-    } else {
-        return back()->with('error', 'Image upload failed.');
-    }
-
-    // Handling the file upload to 'uploads/files'
-    if ($request->hasFile('files')) {
-        foreach ($request->file('files') as $file) {
-            $fileName = time() . '_' . $file->getClientOriginalName(); // Unique file name
-    
-            // Move the file to the public/uploads/files directory
-            $file->move($fileUploadPath, $fileName);
-            $absoluteFilePath = $fileUploadPath . '/' . $fileName;
-            $relativeFilePath = 'uploads/files/' . $fileName;
-            
-            // Copy the uploaded file to the second project's public path (gold)
-            $projectBFilePath = 'D:\work sector\working projects\gold\public\uploads\files';
-            if (file_exists($absoluteFilePath)) {
-                // Copy the file from the first project to the second project
-                copy($absoluteFilePath, $projectBFilePath . '\\' . $fileName);
+            // Copy to the second project
+            if (file_exists($imageUploadPath . '/' . $imageName)) {
+                copy($imageUploadPath . '/' . $imageName, $projectBImagePath . '/' . $imageName);
             }
-            
-            // Store both paths for the file
-            $filePaths[] = [
-                'therbee' => $relativeFilePath, // First project (relative path)
-                'gold' => $projectBFilePath . '\\' . $fileName // Second project (absolute path)
-            ];
+            $imagePaths['therbee'] = $relativeImagePath;
+            $imagePaths['gold'] = 'uploads/products/' . $imageName;
         }
+
+        $filePaths = [];
+        for ($i = 1; $i <= 6; $i++) {
+            $fileKey = "files{$i}";
+            if ($request->hasFile($fileKey)) {
+                $file = $request->file($fileKey);
+                // Set a standardized name format
+                $fileName = time() . "_{$i}_" . $file->getClientOriginalName();
+                $file->move($fileUploadPath, $fileName);
+                $relativeFilePath = 'uploads/files/' . $fileName;
+
+                // Copy to the second project
+                if (file_exists($fileUploadPath . '/' . $fileName)) {
+                    copy($fileUploadPath . '/' . $fileName, $projectBFilePath . '/' . $fileName);
+                }
+                $filePaths[$fileKey] = $relativeFilePath;
+            } else {
+                $filePaths[$fileKey] = null;
+            }
+        }
+
+        Product::create([
+            'product_name' => ucwords(trim($request->input('product_name'))),
+            'original_rate' => $request->input('original_rate'),
+            'discount_rate' => $request->input('discount_rate'),
+            'keywords' => ucwords(trim($request->input('keywords'))),
+            'description' => trim($request->input('description')),
+            'image' => json_encode($imagePaths),
+            'files1' => $filePaths['files1'],
+            'files2' => $filePaths['files2'],
+            'files3' => $filePaths['files3'],
+            'files4' => $filePaths['files4'],
+            'files5' => $filePaths['files5'],
+            'files6' => $filePaths['files6'],
+            'category' => ucwords(trim($request->input('category'))),
+            'subcategory' => ucwords(trim($request->input('subcategory'))),
+            'add_product' => $request->input('is_default'),
+        ]);
+
+        return back()->with('insert', 'Inserted and copied successfully.');
     }
 
-    // Save product details to the database
-    Product::create([
-        'product_name' => ucwords(trim($request->input('product_name'))),
-        'original_rate' => $request->input('original_rate'),
-        'discount_rate' => $request->input('discount_rate'),
-        'keywords' => ucwords(trim($request->input('keywords'))),
-        'description' => trim($request->input('description')),
-        'image' => json_encode($imagePaths), // Store image paths for both projects as JSON
-        'file_paths' => json_encode($filePaths), // Store file paths for both projects as JSON
-        'category' => ucwords(trim($request->input('category'))),
-        'add_product' => $request->input('is_default'),
-    ]);
 
-    return back()->with('insert', 'Inserted and copied successfully.');
-}
 
-    
-    public function edit($id){
-        $products = Product::find($id);
-        $category =  Category::all();
-       
+
+    public function edit($id)
+    {
+        $products = Product::findOrFail($id);
+
+        $category = Category::all();
+
         return view('Adminpanel.Product.update', compact('category', 'products'));
     }
-   
 
     public function update(Request $request, $id)
-{
-    $product = Product::find($id);
+    {
+        // Validate incoming request
+        $request->validate([
+            'files1' => 'nullable|file|mimes:zip|max:2048',
+            'files2' => 'nullable|file|mimes:zip|max:2048',
+            'files3' => 'nullable|file|mimes:zip|max:2048',
+            'files4' => 'nullable|file|mimes:zip|max:2048',
+            'files5' => 'nullable|file|mimes:zip|max:2048',
+            'files6' => 'nullable|file|mimes:zip|max:2048',
+        ]);
 
-    // Check if a new image is uploaded
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $destinationPath = 'uploads/products/';
-        $imageName = time() . '_' . $file->getClientOriginalName(); // Unique file name
-        
-        // Move the new image to the first project path (therbee)
-        $file->move(public_path($destinationPath), $imageName);
+        // Define paths for uploads
+        $imageUploadPath = public_path('uploads/products');
+        $fileUploadPath = public_path('uploads/files');
+        $projectBImagePath = '/Users/arjun/Downloads/Projects/npi_store_client/public/uploads/products';
+        $projectBFilePath = '/Users/arjun/Downloads/Projects/npi_store_client/public/uploads/files';
 
-        // Now copy the uploaded image to the second project's public path (gold)
-        $projectBPath = 'D:\work sector\working projects\gold\public\uploads\products'; // Second project path
-        if (file_exists(public_path($destinationPath . $imageName))) {
-            // Copy the file from the first project to the second project
-            copy(public_path($destinationPath . $imageName), $projectBPath . '\\' . $imageName);
+        // Find the product to update
+        $product = Product::findOrFail($id);
+        $imagePaths = json_decode($product->image, true);
+
+        // Handle image upload for 'uploads/products'
+        if ($file = $request->file('image')) {
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->move($imageUploadPath, $imageName);
+            $relativeImagePath = 'uploads/products/' . $imageName;
+
+            // Copy to the second project
+            if (file_exists($imageUploadPath . '/' . $imageName)) {
+                copy($imageUploadPath . '/' . $imageName, $projectBImagePath . '/' . $imageName);
+            }
+            // Update image paths
+            $imagePaths['therbee'] = $relativeImagePath;
+            $imagePaths['gold'] = $projectBImagePath . '/' . $imageName;
         }
 
-        // Delete the old image if it exists
-        if ($product->image && file_exists(public_path($product->image))) {
-            unlink(public_path($product->image));
+        // Prepare updated file paths
+        $filePaths = [];
+        for ($i = 1; $i <= 6; $i++) {
+            $fileKey = "files{$i}";
+            if ($request->hasFile($fileKey)) {
+                $file = $request->file($fileKey);
+                $fileName = time() . "_{$i}_" . $file->getClientOriginalName();
+                $file->move($fileUploadPath, $fileName);
+                $filePaths[$fileKey] = 'uploads/files/' . $fileName;
+
+                // Copy to the second project
+                copy($fileUploadPath . '/' . $fileName, $projectBFilePath . '/' . $fileName);
+            } else {
+                $filePaths[$fileKey] = $product->$fileKey; // Keep existing file if not replaced
+            }
         }
 
-        // Update the product's image path in the database
-        $product->image = $destinationPath . $imageName;
+        // Update product details in the database
+        $product->update([
+            'product_name' => ucwords(trim($request->input('product_name'))),
+            'original_rate' => $request->input('original_rate'),
+            'discount_rate' => $request->input('discount_rate'),
+            'keywords' => ucwords(trim($request->input('keywords'))),
+            'description' => trim($request->input('description')),
+            'image' => json_encode($imagePaths),
+            'files1' => $filePaths['files1'],
+            'files2' => $filePaths['files2'],
+            'files3' => $filePaths['files3'],
+            'files4' => $filePaths['files4'],
+            'files5' => $filePaths['files5'],
+            'files6' => $filePaths['files6'],
+            'category' => ucwords(trim($request->input('category'))),
+            'subcategory' => ucwords(trim($request->input('subcategory'))),
+            'add_product' => $request->input('is_default'),
+        ]);
+
+        return redirect('/product_list')->with('update', 'Updated and copied successfully.');
     }
 
-    // Update other fields if they are filled
-    if ($request->filled('product_name')) {
-        $product->product_name = ucwords(trim($request->input('product_name')));
-    }
-    
-    if ($request->filled('description')) {
-        $product->description = trim($request->input('description'));
-    }
-
-    if ($request->filled('discount_rate')) {
-        $product->discount_rate = $request->input('discount_rate');
-    }
-
-    if ($request->filled('original_rate')) {
-        $product->original_rate = $request->input('original_rate');
-    }
-
-    if ($request->filled('keywords')) {
-        $product->keywords = ucwords(trim($request->input('keywords')));
-    }
-
-    if ($request->filled('category')) {
-        $product->category = ucwords(trim($request->input('category')));
-    }
-
-    // Save the updated product details
-    $product->save();
-
-    return redirect('/product_list')->with('update', 'Update Successfully');
-}
- 
     public function delete($id)
     {
         $product = Product::find($id);
