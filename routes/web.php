@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\ContentController;
 
 use App\Http\Controllers\Admin\{
     CategoryController,
@@ -59,6 +61,21 @@ Route::put('/product_update/{id}',[App\Http\Controllers\Admin\ProductController:
 Route::get('/product_delete{id}',[App\Http\Controllers\Admin\ProductController::class, 'delete'])->name('product.delete');
 
 
+//-----------------------------------------Device Available--------------------------------------------------------//
+Route::get('/device_list',[DeviceController::class, 'index']);
+Route::get('/device_create',[DeviceController::class, 'create']);
+Route::post('/devices_store',[DeviceController::class, 'store']);
+Route::get('/devices_edit{id}',[DeviceController::class, 'edit']);
+Route::post('/devices_update{id}',[DeviceController::class, 'update']);
+Route::get('/devices_delete{id}',[DeviceController::class, 'destroy']);
+
+//-----------------------------------------Device Available--------------------------------------------------------//
+Route::get('/specific',[ContentController::class, 'index']);
+Route::get('/specific_create',[ContentController::class, 'create']);
+Route::post('/specific_store',[ContentController::class, 'store']);
+Route::get('/specific_edit{id}',[ContentController::class, 'edit']);
+Route::post('/specific_update{id}',[ContentController::class, 'update']);
+Route::get('/specific_delete{id}',[ContentController::class, 'destroy']);
 });
 
 //------------------------------------Auth------------------------------------------------------------------//
@@ -88,17 +105,5 @@ Route::get('/product_single{id}', [App\Http\Controllers\Frontend\FrontendControl
 //------------------------------------Order-------------------------------------------------------------------//
 Route::get('/list_order', [App\Http\Controllers\Frontend\OrderController::class, 'listCart'])->name('cart.list');
 
-
-
-//----------------------wishlist-------------------------------------------------------------------------------//
-Route::get('/wishListAdd/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'Add'])->name('wishlist.add')->middleware('auth.custom');
-Route::get('/remove-wishlist/{id}',[App\Http\Controllers\Frontend\WishlistController::class,'removeWishlist']);
-Route::get('/wishlist' ,[App\Http\Controllers\Frontend\WishlistController::class, 'wishlist']);
-
-//-----------------------------------------Cart---------------------------------------------------------------//
-Route::post('/add_cart' ,[App\Http\Controllers\Frontend\CartController::class, 'addcart']);
-Route::get('/list_cart', [App\Http\Controllers\Frontend\CartController::class, 'listCart'])->name('cart.list');
-Route::get('/update_cart/{id}/{ops}', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
-Route::get('/remove_cart/{id}',[App\Http\Controllers\Frontend\CartController::class,'removeCart']);
 
 
